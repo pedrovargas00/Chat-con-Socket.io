@@ -1,7 +1,7 @@
 const formulario = document.querySelector('form');
 const url = (window.location.hostname.includes('localhost'))
             ? 'http://localhost:8080'
-            : 'https://taupe-crisp-4fad9e.netlify.app/api/auth/';
+            : 'https://taupe-crisp-4fad9e.netlify.app';
 
 formulario.addEventListener('submit', ev => {
 

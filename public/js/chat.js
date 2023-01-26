@@ -1,6 +1,6 @@
 const url = (window.location.hostname.includes('localhost'))
             ? 'http://localhost:8080/api/auth/'
-            : 'link de Heroku';
+            : 'https://taupe-crisp-4fad9e.netlify.app';
 
 let usuario = null;
 let socket = null;
