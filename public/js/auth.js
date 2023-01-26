@@ -1,16 +1,17 @@
 const formulario = document.querySelector('form');
 const url = (window.location.hostname.includes('localhost'))
-            ? 'http://localhost:8080/api/auth/'
-            : 'link de Heroku';
+            ? 'http://localhost:8080'
+            : 'https://taupe-crisp-4fad9e.netlify.app/api/auth/';
 
-//const url = () ? :;
 formulario.addEventListener('submit', ev => {
+
    ev.preventDefault();
    const formData = {};
 
    for (let ele of formulario.elements)
       if (ele.name.length > 0)
          formData[ele.name] = ele.value;
+
    fetch(url + 'login', {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -29,15 +30,15 @@ formulario.addEventListener('submit', ev => {
 
 function handleCredentialResponse(response) {
    //Google Token: ID_TOKEN
-   console.log(response.credential);
 
    const body = {id_token: response.credential};
 
-   fetch('http://localhost:8080/api/auth/google', {
+   fetch(`${url}/api/auth/google`, {
       method: 'POST',
       headers: {
          'Content-Type':'application/json'
       },
+
       body: JSON.stringify(body)})
       .then(res => res.json())
       .then(({token}) => {
@@ -50,6 +51,7 @@ function handleCredentialResponse(response) {
          localStorage.setItem('email', res.usuario.correo)})
       .catch(console.warn);*/
 }
+
 const button = document.getElementById('google_signout');
 button.onclick = () => {
    console.log(google.accounts.id);
