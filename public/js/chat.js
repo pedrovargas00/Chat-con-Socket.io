@@ -27,6 +27,7 @@ const validarJWT = async() => {
    });
  
    const { usuario: userDB, token: tokenDB } = await res.json();
+   
    localStorage.setItem('token', tokenDB);
    usuario = userDB;
    document.title = usuario.nombre;

@@ -3,7 +3,7 @@ const url = (window.location.hostname.includes('localhost'))
             ? 'http://localhost:8080'
             : 'https://chat-socket-io-p47y.onrender.com';
 
-formulario.addEventListener('submit', ev => {
+formulario.addEventListener('submit', async (ev) => {
 
    ev.preventDefault();
    const formData = {};
@@ -12,7 +12,7 @@ formulario.addEventListener('submit', ev => {
       if (ele.name.length > 0)
          formData[ele.name] = ele.value;
 
-   fetch(url + 'login', {
+   await fetch(url + 'login', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {'Content-Type': 'application/json'}
@@ -24,28 +24,28 @@ formulario.addEventListener('submit', ev => {
       localStorage.setItem('token', token);
       window.location = 'chat.html';
    })
-   //.then(data => {console.log(data);})
    .catch(err => {console.log(err);});
 });
 
-function handleCredentialResponse(response) {
+async function handleCredentialResponse(response) {
    //Google Token: ID_TOKEN
 
    const body = {id_token: response.credential};
 
-   fetch(`${url}/api/auth/google`, {
+   await fetch(`${url}/api/auth/google`, {
       method: 'POST',
       headers: {
          'Content-Type':'application/json'
       },
 
-      body: JSON.stringify(body)})
-      .then(res => res.json())
-      .then(({token}) => {
-         localStorage.setItem('token', token);
-         window.location = 'chat.html';
-      })
-      .catch(console.log);
+      body: JSON.stringify(body)
+   })
+   .then(res => res.json())
+   .then(({token}) => {
+      localStorage.setItem('token', token);
+      window.location = 'chat.html';
+   })
+   .catch(console.log);
       /*.then(res => {
          console.log(res);
          localStorage.setItem('email', res.usuario.correo)})
