@@ -17,7 +17,7 @@ const btnSalir = document.querySelector('#btnSalir');
 const validarJWT = async() => {
 
    const token = localStorage.getItem('token') || '';
-   console.log('Token: ', token);
+   
    if (token.length <= 10) {
       window.location = 'index.html';
       throw new Error('No hay token en el servidor');
@@ -29,7 +29,6 @@ const validarJWT = async() => {
    const { usuario: userDB, token: tokenDB } = await res.json();
    
    localStorage.setItem('token', tokenDB);
-   console.log('TokenDB: ', tokenDB);
    usuario = userDB;
    document.title = usuario.nombre;
    await conectarSocket();
