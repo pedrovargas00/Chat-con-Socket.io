@@ -22,7 +22,6 @@ formulario.addEventListener('submit', async (ev) => {
       if (!token)
          return console.error('Falló el login');
       localStorage.setItem('token', token);
-      console.log('Token auth: ', token);
       window.location = 'chat.html';
    })
    .catch(err => { console.log(err); });
@@ -44,7 +43,6 @@ async function handleCredentialResponse(response) {
    .then(res => res.json())
    .then(({token}) => {
       localStorage.setItem('token', token);
-      console.log('Token cred: ', token);
       window.location = 'chat.html';
    })
    .catch(err => { console.log(err); });

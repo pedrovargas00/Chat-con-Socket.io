@@ -1,6 +1,6 @@
 const url = (window.location.hostname.includes('localhost'))
             ? 'http://localhost:8080/api/auth/'
-            : 'https://chat-socket-io-p47y.onrender.com/';
+            : 'https://chat-socket-io-p47y.onrender.com/api/auth/';
 
 let usuario = null;
 let socket = null;
