@@ -1,6 +1,6 @@
 const url = (window.location.hostname.includes('localhost'))
             ? 'http://localhost:8080/api/auth/'
-            : 'https://taupe-crisp-4fad9e.netlify.app';
+            : 'https://chat-socket-io-p47y.onrender.com/';
 
 let usuario = null;
 let socket = null;
